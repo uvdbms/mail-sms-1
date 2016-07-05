@@ -36,6 +36,7 @@ function start() {
     gunicorn -c gunicorn.conf wsgi:app -D -t 6000 --pid $pidfile --error-logfile var/error.log --log-level info \
     --enable-stdio-inheritance --log-file=$logfile --access-logfile var/access.log &> $logfile
     sleep 1
+    echo $! > $pidfile
     echo -n "$app started..., pid="
     cat $pidfile
 }
